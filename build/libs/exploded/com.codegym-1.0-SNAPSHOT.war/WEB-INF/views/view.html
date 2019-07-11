@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+    <fieldset>
+        <legend>List Product</legend>
+        <h2 style="color: black">View Poduct</h2>
+
+    <table border="1px" style="border-collapse: collapse">
+        <div th:each="produc,iterstar:${product}">
+            <tr>
+                <td>Id</td>
+                <td th:text="${product.id}"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td th:text="${product.name}"></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td th:text="${product.price}"></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td th:text="${product.status}"></td>
+            </tr>
+        </div>
+    </table>
+    <a href="/list-product">Back to list</a>
+    </fieldset>
+    <footer th:replace="layout :: footer"></footer>
+</center>
+
+</body>
+</html>

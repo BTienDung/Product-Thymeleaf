@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>List Product</title>
+    <style>
+        odd{
+            color: antiquewhite;
+        }
+        table{
+            width: 600px;
+            height: 70%;
+        }
+    </style>
+</head>
+<body>
+
+    <img id="imag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Beats_Electronics_logo.svg/900px-Beats_Electronics_logo.svg.png" style="width: 50px">
+
+    <center>
+        <fieldset>
+            <legend><h1>List Products</h1></legend>
+            <h2><a href="formCreate">Create Product</a></h2>
+            <form method="post" action="search" class="form">
+                <input type="text" name="name">
+                <input type="submit", value="Search">
+            </form>
+            <table style="border-collapse: collapse" border="1px" >
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th colspan="3">More Option</th>
+                </tr>
+                <div th:each="product, iterStat : ${products}" th:class="${iterStat.odd}? 'odd'">
+                    <tr>
+                        <td th:text="${product.id}"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.status}"></td>
+                        <td> <a th:href="@{/edit/__${product.id}__}">Edit</a></td>
+                        <td> <a th:href="@{/view/__${product.id}__}">View</a></td>
+                        <td> <a th:href="@{/delete/__${product.id}__}">Delete</a></td>
+                    </tr>
+                </div>
+            </table>
+        </fieldset>
+        <footer th:replace="layout :: footer"></footer>
+    </center>
+</body>
+</html>
